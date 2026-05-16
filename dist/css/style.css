@@ -17,4 +17,12 @@
   background: #333;
 }
 
+.finder__cell--start {
+  background: green;
+}
+
+.finder__cell--end {
+  background: red;
+}
+
 /*# sourceMappingURL=style.css.map */
