@@ -1,0 +1,39 @@
+{
+  "name": "project-finder",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+  "build:css": "sass src/sass/style.scss dist/css/style.css",
+  "watch:css": "sass --watch src/sass/style.scss dist/css/style.css",
+  "watch:server": "browser-sync start --server --files \"index.html, src/js/**/*.js, dist/css/style.css\"",
+  "watch": "npm-run-all --parallel watch:css watch:server",
+  "test:js": "eslint src/js/**/*.js",
+  "test:html": "html-validate index.html",
+  "test:scss": "stylelint \"src/sass/**/*.scss\""
+},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kam9521/project-finder.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kam9521/project-finder/issues"
+  },
+  "homepage": "https://github.com/Kam9521/project-finder#readme",
+  "description": "",
+  "devDependencies": {
+    "autoprefixer": "^10.5.0",
+    "browser-sync": "^3.0.4",
+    "eslint": "^10.4.0",
+    "html-validate": "^11.1.0",
+    "mkdirp": "^3.0.1",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.5.14",
+    "postcss-cli": "^11.0.1",
+    "sass": "^1.99.0",
+    "stylelint": "^17.11.1",
+    "stylelint-scss": "^7.1.1"
+  }
+}

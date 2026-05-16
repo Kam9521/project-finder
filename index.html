@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Project Finder</title>
+    <meta name="description" content="JavaScript app for finding the shortest route on a grid.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="dist/css/style.css">
+  </head>
+
+  <body>
+    <header class="main-header">
+      <div class="container">
+        <h1 class="main-header__title">Project Finder</h1>
+
+        <nav class="main-nav">
+          <a href="#/home" class="active">About</a>
+          <a href="#/finder">Finder</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="pages">
+      <section id="home" class="page active">
+        <div class="container">
+          <h2>About this app</h2>
+          <p>
+            This application allows users to draw available routes on a grid,
+            choose a start and end point, and calculate the shortest path.
+          </p>
+        </div>
+      </section>
+
+      <section id="finder" class="page">
+        <div class="container">
+          <h2>Finder</h2>
+          <p>Draw routes</p>
+
+          <button type="button" class="btn">
+            Finish drawing
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="src/js/app.js"></script>
+  </body>
+</html>
