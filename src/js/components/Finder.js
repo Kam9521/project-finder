@@ -84,11 +84,7 @@ class Finder {
       }
 
       if (thisFinder.stage === "start" && isSelected) {
-        thisFinder.startCell = {
-          row: row,
-          column: column,
-          element: clickedElement,
-        };
+        thisFinder.startCell = thisFinder.getCell(row, column);
 
         clickedElement.classList.add("finder__cell--start");
 
@@ -100,11 +96,7 @@ class Finder {
       }
 
       if (thisFinder.stage === "end" && isSelected) {
-        thisFinder.endCell = {
-          row: row,
-          column: column,
-          element: clickedElement,
-        };
+        thisFinder.endCell = thisFinder.getCell(row, column);
 
         clickedElement.classList.add("finder__cell--end");
 
@@ -129,6 +121,12 @@ class Finder {
 
       if (thisFinder.stage === "result") {
         thisFinder.computePath();
+
+        return;
+      }
+
+      if (thisFinder.stage === "finished") {
+        thisFinder.resetFinder();
       }
     });
   }
@@ -189,6 +187,7 @@ class Finder {
 
     const queue = [];
     const visited = [];
+    const parents = new Map();
 
     queue.push(thisFinder.startCell);
 
@@ -196,6 +195,21 @@ class Finder {
       const currentCell = queue.shift();
 
       console.log("CURRENT:", currentCell);
+      if (
+        currentCell.row === thisFinder.endCell.row &&
+        currentCell.column === thisFinder.endCell.column
+      ) {
+        console.log("PATH FOUND!");
+
+        const shortestPath = thisFinder.buildPath(parents);
+
+        console.log(shortestPath);
+        thisFinder.dom.message.innerText = "Shortest path found";
+        thisFinder.dom.button.innerText = "Start again";
+        thisFinder.stage = "finished";
+
+        break;
+      }
 
       visited.push(currentCell);
 
@@ -205,12 +219,59 @@ class Finder {
         const alreadyInQueue = queue.includes(neighbor);
 
         if (!alreadyVisited && !alreadyInQueue) {
+          parents.set(neighbor, currentCell);
           queue.push(neighbor);
         }
       }
 
       console.log("NEIGHBORS:", neighbors);
     }
+  }
+  buildPath(parents) {
+    const thisFinder = this;
+
+    const path = [];
+    let currentCell = thisFinder.endCell;
+
+    while (currentCell) {
+      path.unshift(currentCell);
+
+      currentCell = parents.get(currentCell);
+    }
+
+    console.log("SHORTEST PATH:", path);
+
+    for (let cell of path) {
+      console.log(cell);
+
+      cell.element.classList.add("finder__cell--path");
+    }
+
+    return path;
+  }
+  resetFinder() {
+    const thisFinder = this;
+
+    thisFinder.selectedCells = [];
+
+    thisFinder.startCell = null;
+    thisFinder.endCell = null;
+
+    thisFinder.stage = "drawing";
+
+    const allCells = thisFinder.dom.grid.querySelectorAll(".finder__cell");
+
+    for (let cell of allCells) {
+      cell.classList.remove(
+        "finder__cell--selected",
+        "finder__cell--start",
+        "finder__cell--end",
+        "finder__cell--path",
+      );
+    }
+
+    thisFinder.dom.message.innerText = "Draw routes";
+    thisFinder.dom.button.innerText = "Finish drawing";
   }
   getCell(row, column) {
     const thisFinder = this;

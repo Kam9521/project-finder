@@ -15,9 +15,14 @@
 .finder__cell--selected {
   background: #333;
 }
+
+.finder__cell--path {
+  background: yellow;
+}
 .finder__cell--start {
   background: green;
 }
+
 .finder__cell--end {
   background: red;
 }
