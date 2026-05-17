@@ -1,8 +1,52 @@
+.finder {
+  min-height: 100vh;
+  padding: 60px 20px;
+  background: #111827;
+  color: #ffffff;
+}
+
+.finder__content {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 40px;
+  border-radius: 20px;
+  background: #1f2937;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.finder__title {
+  margin-bottom: 20px;
+  font-size: 48px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.finder__message {
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.finder__button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.finder__button:hover {
+  background: #1d4ed8;
+}
 .finder__grid {
   display: grid;
   grid-template-columns: repeat(10, 40px);
   gap: 4px;
   margin-top: 30px;
+  justify-content: center;
 }
 
 .finder__cell {
@@ -11,6 +55,12 @@
   border: 1px solid #333;
   background: #ffffff;
   cursor: pointer;
+  transition:
+    background 0.2s,
+    transform 0.2s;
+}
+.finder__cell:hover {
+  transform: scale(1.05);
 }
 .finder__cell--selected {
   background: #333;
@@ -25,4 +75,68 @@
 
 .finder__cell--end {
   background: red;
+}
+.finder__legend {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 24px;
+  font-size: 14px;
+}
+
+.finder__legend span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-box {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+}
+
+.legend-box--route {
+  background: #333;
+}
+
+.legend-box--start {
+  background: green;
+}
+
+.legend-box--end {
+  background: red;
+}
+
+.legend-box--path {
+  background: yellow;
+}
+@media (max-width: 768px) {
+  .finder__title {
+    font-size: 36px;
+  }
+
+  .finder__grid {
+    grid-template-columns: repeat(10, 28px);
+    gap: 3px;
+  }
+
+  .finder__cell {
+    width: 28px;
+    height: 28px;
+  }
+
+  .finder__content {
+    padding: 24px;
+  }
+
+  .finder__message {
+    font-size: 16px;
+  }
+
+  .finder__button {
+    width: 100%;
+  }
 }

@@ -1,5 +1,6 @@
 "use strict";
 
+
 import { select, classNames } from "./settings.js";
 
 import Home from "./components/Home.js";
@@ -81,8 +82,8 @@ const app = {
     thisApp.initPages();
     thisApp.initHome();
     thisApp.initFinder();
+    
   },
 };
 
 app.init();
-
