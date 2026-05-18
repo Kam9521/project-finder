@@ -3,7 +3,7 @@
 export const select = {
   containerOf: {
     pages: "#pages",
-    navLinks: ".main-nav a",
+    navLinks: 'a[href^="#/"]',
   },
 
   pages: {

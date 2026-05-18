@@ -90,6 +90,7 @@ class Finder {
 
         thisFinder.stage = "end";
         thisFinder.dom.message.innerText = "Choose end point";
+        thisFinder.dom.button.innerText = "Select destination";
 
         console.log(thisFinder.startCell);
         return;
@@ -103,6 +104,7 @@ class Finder {
         thisFinder.stage = "result";
         thisFinder.dom.message.innerText =
           "Click compute to find the shortest path";
+        thisFinder.dom.button.innerText = "Compute shortest path";
 
         console.log(thisFinder.endCell);
       }
@@ -111,6 +113,11 @@ class Finder {
     // Handles changing application stages.
     thisFinder.dom.button.addEventListener("click", function () {
       if (thisFinder.stage === "drawing") {
+        if (thisFinder.selectedCells.length < 2) {
+          alert("Draw at least two route cells first.");
+
+          return;
+        }
         thisFinder.stage = "start";
 
         thisFinder.dom.message.innerText = "Choose start point";
